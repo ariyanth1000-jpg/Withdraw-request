@@ -21,14 +21,22 @@ body{
 
 .loading{
   position:fixed;
-  inset:0;
-  background:#07132d;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:30px;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(15,23,42,.95);
+  border:1px solid rgba(34,197,94,.35);
+  padding:12px 22px;
+  border-radius:999px;
+  color:#fff;
+  font-size:17px;
   font-weight:bold;
   z-index:9999;
+  box-shadow:0 0 25px rgba(34,197,94,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
 }
 
 .card{
@@ -166,7 +174,7 @@ button{
 
 <body>
 
-<div id="loading" class="loading">🖨️  Scaning...</div>
+<div id="loading" class="loading">🖨️ Scaning...</div>
 
 <div class="card">
 
@@ -237,7 +245,7 @@ window.onload = function(){
   }else{
     loading.style.display = "none";
     searchBox.classList.remove("hidden");
-    result.innerHTML = "Password Auth RequiredPassword AuthPassword AuthPassword Auth";
+    result.innerHTML = "Password Auth Required";
   }
 };
 
@@ -296,7 +304,7 @@ function searchNow(){
   }
 
   loading.style.display = "flex";
-  loading.innerHTML = "🖨️ Profile Scaning.....";
+  loading.innerHTML = "🖨️ Profile Scaning...";
   result.innerHTML = "";
   amountArea.classList.add("hidden");
 
@@ -376,7 +384,7 @@ function submitAmount(){
 
   if(!method){
     result.className = "result error";
-    result.innerHTML = "Select  Payment Method";
+    result.innerHTML = "Select Payment Method";
     return;
   }
 
@@ -410,83 +418,82 @@ function submitAmount(){
 
     if(data.success){
 
-  document.body.innerHTML = `
-  <div style="
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:
-      radial-gradient(circle at top left,rgba(59,130,246,.45),transparent 35%),
-      radial-gradient(circle at bottom right,rgba(34,197,94,.35),transparent 40%),
-      #07132d;
-    padding:20px;
-    font-family:'Segoe UI',Arial,sans-serif;
-  ">
-
-    <div style="
-      width:100%;
-      max-width:520px;
-      text-align:center;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(34,197,94,.35);
-      border-radius:30px;
-      padding:40px 25px;
-      box-shadow:0 0 50px rgba(34,197,94,.45);
-    ">
-
+      document.body.innerHTML = `
       <div style="
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        background:#22c55e;
-        margin:auto;
+        min-height:100vh;
         display:flex;
-        align-items:center;
         justify-content:center;
-        font-size:65px;
-        color:white;
+        align-items:center;
+        background:
+          radial-gradient(circle at top left,rgba(59,130,246,.45),transparent 35%),
+          radial-gradient(circle at bottom right,rgba(34,197,94,.35),transparent 40%),
+          #07132d;
+        padding:20px;
+        font-family:'Segoe UI',Arial,sans-serif;
       ">
-        ✓
+
+        <div style="
+          width:100%;
+          max-width:520px;
+          text-align:center;
+          background:rgba(255,255,255,.08);
+          border:1px solid rgba(34,197,94,.35);
+          border-radius:30px;
+          padding:40px 25px;
+          box-shadow:0 0 50px rgba(34,197,94,.45);
+        ">
+
+          <div style="
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            background:#22c55e;
+            margin:auto;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:65px;
+            color:white;
+          ">
+            ✓
+          </div>
+
+          <h1 style="
+            margin-top:25px;
+            font-size:38px;
+            color:white;
+          ">
+            REQUEST SUCCESSFUL
+          </h1>
+
+          <p style="
+            margin-top:15px;
+            color:#cbd5e1;
+            font-size:18px;
+            line-height:1.8;
+          ">
+            Your withdrawal request has been received successfully.
+            <br><br>
+            Please wait while your company CEO reviews your request.
+          </p>
+
+          <div style="
+            margin-top:25px;
+            padding:15px;
+            border-radius:15px;
+            background:rgba(34,197,94,.15);
+            color:#4ade80;
+            font-weight:bold;
+          ">
+            Status : Pending Review
+          </div>
+
+        </div>
+
       </div>
+      `;
 
-      <h1 style="
-        margin-top:25px;
-        font-size:38px;
-        color:white;
-      ">
-        REQUEST SUCCESSFUL
-      </h1>
-
-      <p style="
-        margin-top:15px;
-        color:#cbd5e1;
-        font-size:18px;
-        line-height:1.8;
-      ">
-        Your withdrawal request has been received successfully.
-        <br><br>
-        Please wait while your company CEO reviews your request.
-      </p>
-
-      <div style="
-        margin-top:25px;
-        padding:15px;
-        border-radius:15px;
-        background:rgba(34,197,94,.15);
-        color:#4ade80;
-        font-weight:bold;
-      ">
-        Status : Pending Review
-      </div>
-
-    </div>
-
-  </div>
-  `;
-
-}else{
-    
+    }else{
       result.className = "result error";
       result.innerHTML = "❌ Submit Failed";
     }
